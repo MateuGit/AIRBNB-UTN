@@ -7,13 +7,14 @@ class Ownership(models.Model):
     city = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     description = models.TextField()
-    services = models.ManyToManyField('Service', verbose_name="list of sites")
+    services = models.ManyToManyField('Service', verbose_name="list of services")
     maxPeopleAmount = models.PositiveSmallIntegerField(default=1, 
         validators=[MinValueValidator(1)]
     )
     dailyRate = models.PositiveSmallIntegerField(default=1, 
         validators=[MinValueValidator(1)]
     )
+    city = models.ForeignKey('City', on_delete=models.SET_NULL,null=True)
     rentDates = models.ManyToManyField('RentDate', verbose_name="list of rent dates")
     image = models.ImageField(upload_to='images/')
 
@@ -32,3 +33,9 @@ class RentDate(models.Model):
 
     def __str__(self):
         return self.minDate.strftime(" %d-%m-%Y") + ' / ' + self.maxDate.strftime(" %d-%m-%Y")
+
+class City(models.Model):
+    name = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.name
