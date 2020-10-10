@@ -15,7 +15,7 @@ class Ownership(models.Model):
         validators=[MinValueValidator(1)]
     )
     city = models.ForeignKey('City', on_delete=models.SET_NULL,null=True)
-    rentDates = models.ManyToManyField('RentDate', verbose_name="list of rent dates")
+    rentPeriods = models.ManyToManyField('RentPeriod', verbose_name="list of rent periods")
     image = models.ImageField(upload_to='images/')
 
     def __str__(self):
@@ -27,7 +27,7 @@ class Service(models.Model):
     def __str__(self):
         return self.name
 
-class RentDate(models.Model):
+class RentPeriod(models.Model):
     minDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now)
     maxDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now)
 
