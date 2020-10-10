@@ -1,9 +1,10 @@
 from django.db import models
-# from ownerships.models import Ownership
+from ownerships.models import Ownership
 from reservations.models import Reservation
+from datetime import datetime
 
 # Create your models here.
 class RentDate(models.Model):
-    ownership = models.ForeignKey('Ownership', on_delete=models.SET_NULL)
-    reservation = models.ForeignKey('Reservation', on_delete=models.SET_NULL, blank=True, null=True)
-    date = models.DateField(auto_now=True, auto_now_add=False)
+    ownership = models.ForeignKey('ownerships.Ownership', on_delete=models.CASCADE)
+    reservation = models.ForeignKey('reservations.Reservation', on_delete=models.SET_NULL, blank=True, null=True)
+    date = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now)
