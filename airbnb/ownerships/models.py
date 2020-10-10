@@ -11,6 +11,9 @@ class Ownership(models.Model):
     maxPeopleAmount = models.PositiveSmallIntegerField(default=1, 
         validators=[MinValueValidator(1)]
     )
+    dailyRate = models.PositiveSmallIntegerField(default=1, 
+        validators=[MinValueValidator(1)]
+    )
     rentDates = models.ManyToManyField('RentDate', verbose_name="list of rent dates")
     image = models.ImageField(upload_to='images/')
 
