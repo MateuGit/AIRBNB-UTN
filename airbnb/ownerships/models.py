@@ -8,7 +8,7 @@ class Ownership(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
     services = models.ManyToManyField('Service', verbose_name="list of services")
-    maxPeopleAmount = models.PositiveSmallIntegerField(default=1, 
+    maxPeopleAmount = models.FloatField(default=1, 
         validators=[MinValueValidator(1)]
     )
     dailyRate = models.PositiveSmallIntegerField(default=1, 
