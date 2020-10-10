@@ -9,3 +9,7 @@ class Reservation(models.Model):
     clientName = models.TextField()
     clientLastName = models.TextField()
     clientEmail = models.EmailField(max_length = 80)
+    ownership = models.ForeignKey('Ownership', on_delete=models.SET_NULL,null=True)    
+    
+    def __str__(self):
+        return "Reservation: "+str(self.code)
