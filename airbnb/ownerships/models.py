@@ -4,16 +4,12 @@ from django.core.validators import MinValueValidator
 
 # Create your models here.
 class Ownership(models.Model):
-    city = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
     description = models.TextField()
     services = models.ManyToManyField('Service', verbose_name="list of services")
-    maxPeopleAmount = models.FloatField(default=1, 
-        validators=[MinValueValidator(1)]
-    )
-    dailyRate = models.PositiveSmallIntegerField(default=1, 
-        validators=[MinValueValidator(1)]
-    )
+    maxPeopleAmount = models.PositiveSmallIntegerField(default=1, validators=[MinValueValidator(1)]
+        ,verbose_name=" max people amount")
+    dailyRate = models.IntegerField(default=1,validators=[MinValueValidator(1)], verbose_name="daily rate")
     city = models.ForeignKey('City', on_delete=models.SET_NULL,null=True)
     rentPeriods = models.ManyToManyField('RentPeriod', verbose_name="list of rent periods")
     image = models.ImageField(upload_to='images/')
