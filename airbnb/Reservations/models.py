@@ -6,7 +6,7 @@ from ownerships.models import Ownership
 
 class Reservation(models.Model):
     creationDate = models.DateField(auto_now=True, auto_now_add=False)
-    code = models.IntegerField()
+    code = models.IntegerField(blank=True, null=True) #SACAR NULL
     totalPrice =  models.FloatField()
     clientName = models.CharField(max_length = 30)
     clientLastName = models.CharField(max_length = 30)

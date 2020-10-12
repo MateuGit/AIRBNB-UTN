@@ -10,36 +10,23 @@
 
     <main role="main">
   
-        <div class="album py-5 bg-light">
-          <div class="container">
+        <img src="{{ownership.image.url}}" alt="" width="300" height="300" class="img-fluid">
+        
+        <p>{{ownership.title}}</p>
+        
+        {% for service in ownership.services.all %}
+            {{ service }} - 
+        {% endfor %}
   
-            <div class="row">
-   
-              {% for ownership in ownerships %}
-                
-                <div class="col-md-4" onclick="location.href='{% url 'ownership-detail' ownership.id %}'">
-                  <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" src="{{ownership.image.url}}" alt="Card image cap">
-                    <div class="card-body">
-                      <p class="card-text">{{ ownership.title }}</p>
-                        <p>{{ownership.city}}</p>
+        <p>${{ownership.dailyRate}} por noche</p>
 
-                        {% for service in ownership.services.all %}
-                            {{ service }} - 
-                        {% endfor %}
+        <p>Company commission: ${{commission}}</p>
 
-                        <p>${{ownership.dailyRate}} por noche</p>
-                    </div>
-                  </div>
-                </div>
-              {% endfor %}
-                
-            </div>
-  
-          </div>
-        </div>
-  
-      </main>
+        <!-- Cuando hagas los campos para rango de fechas del hospedaje, con js yo calculo el Total -->
+
+        <!-- Hacer campos para que el huesped ingrese nombre, apellido y email -->
+
+    </main>
 
 
 
