@@ -2,6 +2,9 @@ from django.db import models
 from datetime import datetime, date
 from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
+from django.conf import settings
+
 
 def todayDateValidation(value):
         today = date.today()
@@ -15,6 +18,10 @@ def maximumDateValidation(minimumDate):
 
 # Create your models here.
 class Ownership(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
     title = models.CharField(max_length=50)
     description = models.TextField()
     services = models.ManyToManyField('Service', verbose_name="list of services")
@@ -43,8 +50,8 @@ class RentPeriod(models.Model):
             raise ValidationError('La fecha maxima tiene que ser mayor que la fecha minima.')
         models.Model.save(self, force_insert, force_update)
 
-    def __str__(self):
-        return self.minimumDate.strftime(" %d-%m-%Y") + ' / ' + self.maximumDate.strftime(" %d-%m-%Y")
+    # def __str__(self):
+    #     return self.minimumDate.strftime(" %d-%m-%Y") + ' / ' + self.maximumDate.strftime(" %d-%m-%Y")
 
 class City(models.Model):
     name = models.CharField(max_length=50)
