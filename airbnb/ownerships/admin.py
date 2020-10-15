@@ -11,10 +11,10 @@ class OwnershipAdmin(admin.ModelAdmin):
     fieldsets = ( ('Ownership Information', {'fields': ('user', 'title', 'description', 'services', 'maximumPeopleAmount', 'dailyRate', 'city', 'rentPeriods', 'image'), 'classes': ['wide']}),)
 
     def get_queryset(self, request):
-           qs = super(OwnershipAdmin, self).get_queryset(request)
-           if request.user.is_superuser:
-               return qs
-           return qs.filter(user=request.user)
+        qs = super(OwnershipAdmin, self).get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(user=request.user)
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "user":
@@ -24,20 +24,20 @@ class OwnershipAdmin(admin.ModelAdmin):
         return super(OwnershipAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 class RentPeriodAdmin(admin.ModelAdmin):
-        list_display=('minimumDate', 'maximumDate')
+    list_display=('minimumDate', 'maximumDate')
 
-        def get_queryset(self, request):
-           qs = super(RentPeriodAdmin, self).get_queryset(request)
+    def get_queryset(self, request):
+        qs = super(RentPeriodAdmin, self).get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(user=request.user)
 
-           print(request)
-
-           for rentPeriod in qs:
-               print(rentPeriod)
-
-           if request.user.is_superuser:
-               return qs
-
-           return qs.filter(minimumDate=request)
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "user":
+            if not request.user.is_superuser:
+                kwargs["queryset"] = User.objects.filter(username=request.user)
+                kwargs["initial"] = kwargs["queryset"][0]
+        return super(RentPeriodAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
 # Register your models here.

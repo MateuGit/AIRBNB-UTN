@@ -42,6 +42,10 @@ class Service(models.Model):
         return self.name
 
 class RentPeriod(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
     minimumDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now, validators=[todayDateValidation])
     maximumDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now)
 
@@ -50,8 +54,8 @@ class RentPeriod(models.Model):
             raise ValidationError('La fecha maxima tiene que ser mayor que la fecha minima.')
         models.Model.save(self, force_insert, force_update)
 
-    # def __str__(self):
-    #     return self.minimumDate.strftime(" %d-%m-%Y") + ' / ' + self.maximumDate.strftime(" %d-%m-%Y")
+    def __str__(self):
+        return self.minimumDate.strftime(" %d-%m-%Y") + ' / ' + self.maximumDate.strftime(" %d-%m-%Y")
 
 class City(models.Model):
     name = models.CharField(max_length=50)
