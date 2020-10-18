@@ -1,0 +1,13 @@
+// to watch and compile sass:
+// sass --watch main.scss:../css/styles.css
+@import './variables';
+@import './typography';
+@import './mixins';
+@import './buttons';
+@import './forms';
+@import './inputs';
+@import './nav';
+@import './grid';
+@import './landing';
+@import './reserve';
+@import './base.scss';  

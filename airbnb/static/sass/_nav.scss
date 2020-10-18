@@ -1,0 +1,14 @@
+.nav-container {
+    position: relative;
+    z-index: 50;
+    width: 95%;
+    margin: 0 auto;
+    border-radius: $border-radius-1;
+    @include box-shadow();
+    margin-top: 2rem;
+    & .form-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }

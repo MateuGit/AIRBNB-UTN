@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+.h1 {
+    font-size: $font-size-xl;
+    color: $color-font-white;
+    font-weight: 500;
+  }
+  
+  .h2 {
+    font-size: $font-size-lg;
+    color: $color-font-white;
+    font-weight: 500;
+  }
+  
+  .h3 {
+    color: $color-font-black;
+    font-size: $font-size-sm-2;
+    font-weight: 400;
+  }
+  
+  .h3-2{
+    color: $color-font-black;
+    font-size: $font-size-lg;
+    font-weight: 400;
+  }
+  
+  .text-md {
+    font-size: $font-size-sm;
+  }
+  
+  .p-font-md {
+    font-size: $font-size-micro;
+  }
+  .p-font-md-2 {
+    font-size: $font-size-sm;
+  }
+  
+  .text-light{
+    font-weight: 500 !important;
+  }
+  
+  .text-regular {
+    font-weight: 600;
+  }
+  
+  .text-bold {
+    font-weight: 700;
+  }

@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%  static  'css/styles.css'  %}">
+    <title>Document</title>
+</head>
+<body>
+    <section class="house">
+        <div class="house-content">
+            <img class="house-content-img" src="../../../static/media/houses/house-1.jpg" alt="house" />
+            <a class="btn-back">Atrás</a>
+            <div class="house-content-info">
+                <div class="house-content-info-row">
+                    <h2 class="h2">La mejor casa</h2>
+                    <div class="info-address">
+                        <img src="../../../static/media/icons/location-icon.png" alt="location" />
+                        <p>Una dirección al 900</p>
+                    </div>
+                </div>
+                <div class="house-content-info-row">
+                    <p class="text-md">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis
+                        corporis autem accusantium molestias quae expedita illum eum consequuntur
+                        dolorum ipsam, esse quam nam aperiam adipisci modi, sequi, mollitia doloremque
+                        excepturi. Maiores, quia eaque iure, voluptates cupiditate dolores quisquam rem
+                        quam dignissimos saepe minus? Deleniti, nisi aliquam. At quo ad, illo ullam iste
+                        libero hic reiciendis debitis nam quaerat explicabo accusantium incidunt voluptatem
+                        samus laborum. Molestias ducimus amet non consequuntur hic vitae veritatis, quisquam
+                        adipisci ex?</p>
+                </div>
+                <div class="house-content-info-col">
+                    <h3 class="h3">Servicios</h3>
+                    <ul>
+                        <li>Servicio</li>
+                        <li>Servicio</li>
+                        <li>Servicio</li>
+                        <li>Servicio</li>
+                        <li>Servicio</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="house-reserve">
+            <div class="reserve-row price-row">
+                <h3 class="h3-2">$5750</h3>
+                <p class="p-font-md">por noche</p>
+            </div>
+            <div class="reserve-row">
+                <form action="">
+                    <div class="form-control-row">
+                        <div class="form-control">
+                            <label for="from" class="text-light">Desde</label>
+                            <input class="input-sm input-reserve" type="date" name="from" />
+                        </div>
+                        <div class="form-control">
+                            <label for="to" class="text-light">Hasta</label>
+                            <input class="input-sm input-reserve" type="date" name="to" />
+                        </div>
+                    </div>
+                    <div class="form-control">
+                        <label for="guests" class="text-light">Huéspedes</label>
+                        <input class="input-sm input-reserve input-reserve-sm" type="number" name="guests" />
+                    </div>
+                </form>
+            </div>
+            <div class="summary">
+                <div class="summary-row">
+                    <div class="summary-row-col">
+                        <p class="p-font-md">$5750</p>
+                        <p class="p-font-md">por 3 noche/s</p>
+                    </div>
+                    <div class="summary-row-col">
+                        <p class="p-font-md text-regular">$17450</p>
+                    </div>
+                </div>
+                <div class="summary-row">
+                    <div class="summary-row-col">
+                        <p class="p-font-md">Comisión</p>
+                    </div>
+                    <div class="summary-row-col">
+                        <p class="p-font-md text-regular">$450</p>
+                    </div>
+                </div>
+                <div class="summary-row">
+                    <div class="summary-row-col">
+                        <p class="p-font-md-2 text-bold">Total</p>
+                    </div>
+                    <div class="summary-row-col">
+                        <p class="p-font-md-2 text-bold">$18750</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reserve-row">
+                <button class="btn-action">Reservar</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

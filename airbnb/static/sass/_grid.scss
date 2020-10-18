@@ -1,0 +1,57 @@
+.houses-grid {
+  width: 100%;
+}
+
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 40rem);
+  grid-column-gap: 5rem;
+  grid-row-gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.grid-item {
+  // width: 25rem;
+  // height: 25rem;
+  background-color: $color-grey-ultra-light;
+  border-radius: $border-radius-3;
+  transition: all 0.1s ease-in;
+  @include box-shadow();
+  & img {
+    width: 100%;
+    height: 25rem;
+    object-fit: cover;
+    display: block;
+    border-radius: $border-radius-3 $border-radius-3 0 0;
+  }
+
+  &-info {
+    margin: 1rem 2rem;
+    & * {
+      margin: 1rem 0;
+    }
+
+    &-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // background-color: red;
+      &-price {
+        display: flex;
+        align-items: center;
+        &-number {
+          font-size: $font-size-md;
+        }
+        &-per-night {
+          font-size: $font-size-micro;
+          color: $color-font-grey;
+        }
+      }
+    }
+  }
+}
+.grid-item:hover {
+  @include box-shadow-2();
+}

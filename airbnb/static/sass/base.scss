@@ -1,0 +1,24 @@
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: $main-font;
+
+  @media only screen and (max-width: 360px) {
+    font-size: 42.5%;
+  }
+
+  @media only screen and (max-width: 900px) {
+    font-size: 50%;
+  }
+}

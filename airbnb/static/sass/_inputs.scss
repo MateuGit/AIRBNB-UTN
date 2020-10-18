@@ -1,0 +1,27 @@
+.input {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 1px solid $color-grey-light;
+    height: 4rem;
+    font-size: $font-size-micro;
+    color: $color-grey-dark;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .input-md {
+    @extend .input;
+  }
+   
+  .input-sm {
+    @extend .input;
+  }
+  
+  .input-reserve {
+    background-color: $color-grey-ultra-light;
+  }
+  .input-reserve-sm {
+    width: 13rem;
+  }
+  

@@ -6,6 +6,18 @@ def home(request):
     ownerships = Ownership.objects.all()
     return render(request, 'ownership/home.html', {'ownerships':ownerships})
 
+def landing(request):
+    ownerships = Ownership.objects.all()
+    return render(request, 'ownership/landing.html', {'ownerships':ownerships})
+
+def grid(request):
+    ownerships = Ownership.objects.all()
+    return render(request, 'ownership/grid.html', {'ownerships':ownerships})
+
+def reserve(request):
+    ownerships = Ownership.objects.all()
+    return render(request, 'ownership/reserve.html', {'ownerships':ownerships})
+
 def detail(request, ownership_id):
     ownership = get_object_or_404(Ownership, pk=ownership_id)
     commission = ownership.dailyRate * 0.08

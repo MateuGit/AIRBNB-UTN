@@ -1,12 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public/css/style.css">
+    <link rel="stylesheet" href="{%  static  'css/styles.css'  %}">
     <title>Document</title>
 </head>
 <body>
-    
+    <section class="landing">
+        <div class="brand">
+            <h1 class="h1">
+                Encontrá la casa <br />
+                que estabas buscando
+            </h1>
+        </div>
+        <div class="search-box">
+            <div  class="form-landing">
+                <div class="form-control">
+                    <label for="city">Ciudad</label>
+                    <input class="input-md" type="text" name="city" placeholder="Mar del Plata" />
+                </div>
+                <div class="form-control-row">
+                    <div class="form-control">
+                        <label for="from">Desde</label>
+                        <input class="input-sm" type="date" name="from" />
+                    </div>
+                    <div class="form-control">
+                        <label for="to">Hasta</label>
+                        <input class="input-sm" type="date" name="to" />
+                    </div>
+                </div>
+                <div class="form-control">
+                    <label for="guests">Huéspedes</label>
+                    <input class="input-md" type="number" name="guests" />
+                </div>
+                <button class="btn-action" >Buscar</button>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

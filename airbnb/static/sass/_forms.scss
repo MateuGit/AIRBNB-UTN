@@ -1,0 +1,29 @@
+.form-landing {
+    display: flex;
+    flex-direction: column;
+    & .form-control {
+      margin: 1rem 2rem;
+    }
+    & button {
+      align-self: center;
+      margin-top: 2rem;
+    }
+  }
+  
+  .form-control {
+    display: flex;
+    flex-direction: column;
+    & label {
+      font-size: $font-size-sm;
+      font-weight: 600;
+    }
+  }
+  
+  .form-control-row {
+    display: flex;
+    margin: 2rem 0rem;
+    & :first-child {
+      margin-right: 5rem;
+    }
+  }
+  
