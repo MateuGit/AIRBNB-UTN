@@ -80,12 +80,13 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-  
+        margin: 2rem 0;
         &-row {
           display: flex;
           margin: 2rem 0;
           justify-content: space-between;
           border-bottom: 1px solid $color-grey-light;
+
         }
         &-row-col {
           display: flex;
@@ -94,7 +95,11 @@
       }
       & .reserve-row {
         display: flex;
-        margin: 1rem 0;
+        // margin: 1rem 0;
       }
     }
+  }
+
+  .form-control-reserve{
+    margin-top: 2rem !important;
   }

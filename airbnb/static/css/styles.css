@@ -323,6 +323,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin: 2rem 0;
 }
 .house .house-reserve .summary-row {
   display: flex;
@@ -336,7 +337,10 @@
 }
 .house .house-reserve .reserve-row {
   display: flex;
-  margin: 1rem 0;
+}
+
+.form-control-reserve {
+  margin-top: 2rem !important;
 }
 
 *,
