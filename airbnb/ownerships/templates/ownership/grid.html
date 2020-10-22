@@ -33,76 +33,25 @@
             </form>
         </nav>
         <div class="grid-container">
+            {% for ownership in ownerships %}
             <div class="grid-item">
-                <img src="../../../static/media/houses/house-1.jpg" alt="house" />
+                <img src="{{ownership.image.url}}" alt="house" />
                 <div class="grid-item-info">
-                    <h3 class="h3">Moderna 77th Street</h3>
-                    <p>Internet - agua - heladera - cama</p>
+                    <h3 class="h3">{{ ownership.title }}</h3>
+                    <h4>{{ownership.city}}</h4>
+                    {% for service in ownership.services.all %}
+                        <p>{{ service }} <pre> </pre></p>
+                    {% endfor %}
                     <div class="grid-item-info-action">
                         <div class="grid-item-info-action-price">
-                            <p class="grid-item-info-action-price-number">$850</p>
+                            <p class="grid-item-info-action-price-number">${{ownership.dailyRate}} <pre> </pre></p>
                             <p class="grid-item-info-action-price-per-night">por noche</p>
                         </div>
-                        <button class="btn-action-item">Ver</button>
+                        <button class="btn-action-item" onclick="location.href='{% url 'reserve' ownership.id %}'">Ver</button>
                     </div>
                 </div>
             </div>
-            <div class="grid-item">
-                <img src="../../../static/media/houses/house-1.jpg" alt="house" />
-                <div class="grid-item-info">
-                    <h3 class="h3">Moderna 77th Street</h3>
-                    <p>Internet - agua - heladera - cama</p>
-                    <div class="grid-item-info-action">
-                        <div class="grid-item-info-action-price">
-                            <p class="grid-item-info-action-price-number">$850</p>
-                            <p class="grid-item-info-action-price-per-night">por noche</p>
-                        </div>
-                        <button class="btn-action-item">Ver</button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../../../static/media/houses/house-1.jpg" alt="house" />
-                <div class="grid-item-info">
-                    <h3 class="h3">Moderna 77th Street</h3>
-                    <p>Internet - agua - heladera - cama</p>
-                    <div class="grid-item-info-action">
-                        <div class="grid-item-info-action-price">
-                            <p class="grid-item-info-action-price-number">$850</p>
-                            <p class="grid-item-info-action-price-per-night">por noche</p>
-                        </div>
-                        <button class="btn-action-item">Ver</button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../../../static/media/houses/house-1.jpg" alt="house" />
-                <div class="grid-item-info">
-                    <h3 class="h3">Moderna 77th Street</h3>
-                    <p>Internet - agua - heladera - cama</p>
-                    <div class="grid-item-info-action">
-                        <div class="grid-item-info-action-price">
-                            <p class="grid-item-info-action-price-number">$850</p>
-                            <p class="grid-item-info-action-price-per-night">por noche</p>
-                        </div>
-                        <button class="btn-action-item">Ver</button>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <img src="../../../static/media/houses/house-1.jpg" alt="house" />
-                <div class="grid-item-info">
-                    <h3 class="h3">Moderna 77th Street</h3>
-                    <p>Internet - agua - heladera - cama</p>
-                    <div class="grid-item-info-action">
-                        <div class="grid-item-info-action-price">
-                            <p class="grid-item-info-action-price-number">$850</p>
-                            <p class="grid-item-info-action-price-per-night">por noche</p>
-                        </div>
-                        <button class="btn-action-item">Ver</button>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </section>
 </body>
