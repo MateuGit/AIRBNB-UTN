@@ -11,10 +11,6 @@ def todayDateValidation(value):
         if value < today:
             raise ValidationError('La fecha debe ser actual o futura.')
 
-def maximumDateValidation(minimumDate):
-        print(minimumDate)
-        # if value < minimumDate:
-        #     raise ValidationError('La fecha debe ser mayor a minimumDate.')
 
 # Create your models here.
 class Ownership(models.Model):
