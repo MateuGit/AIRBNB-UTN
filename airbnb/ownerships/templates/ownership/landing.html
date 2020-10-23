@@ -17,25 +17,31 @@
         </div>
         <div class="search-box">
             <div  class="form-landing">
-                <div class="form-control">
-                    <label for="city">Ciudad</label>
-                    <input class="input-md" type="text" name="city" placeholder="Mar del Plata" />
-                </div>
-                <div class="form-control-row">
+                <form action="/propiedades/">
                     <div class="form-control">
-                        <label for="from">Desde</label>
-                        <input class="input-sm" type="date" name="from" />
+                        <label for="city">Ciudad</label>
+                        <select name="city" id="" class="input-md">
+                            {% for city in cities %}
+                                <option id="{{city.id}}" value="{{city.id}}">{{city.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-control-row">
+                        <div class="form-control">
+                            <label for="from">Desde</label>
+                            <input class="input-sm" type="date" name="from" />
+                        </div>
+                        <div class="form-control">
+                            <label for="to">Hasta</label>
+                            <input class="input-sm" type="date" name="to" />
+                        </div>
                     </div>
                     <div class="form-control">
-                        <label for="to">Hasta</label>
-                        <input class="input-sm" type="date" name="to" />
+                        <label for="guests">Huéspedes</label>
+                        <input class="input-md" type="number" name="guests" min="1" value="1"/>
                     </div>
-                </div>
-                <div class="form-control">
-                    <label for="guests">Huéspedes</label>
-                    <input class="input-md" type="number" name="guests" />
-                </div>
-                <button class="btn-action" >Buscar</button>
+                    <button class="btn-action">Buscar</button>
+                </form>
             </div>
         </div>
     </section>

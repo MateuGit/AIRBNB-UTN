@@ -13,8 +13,20 @@
             <form action="" class="form-nav">
                 <div class="form-control">
                     <label for="city">Ciudad</label>
-                    <input class="input-md" type="text" name="city" placeholder="Mar del Plata" />
+                    <select name="city" id="" class="input-md">
+                        {% for city in cities %}
+                            
+                            {% if cityId == city.id %}
+                                <option selected="true" disabled="disabled" name="city" value="{{city.id}}">{{city.name}}asddssdadsa</option>
+                            {% else %}
+                                {{city.id}}
+                                {{cityId}}
+                                <option name="city" value="{{city.id}}">{{city.name}}</option>
+                            {% endif %}     
+                        {% endfor %}
+                    </select>
                 </div>
+                
                 <div class="form-control-row">
                     <div class="form-control">
                         <label for="from">Desde</label>
