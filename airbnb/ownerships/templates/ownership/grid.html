@@ -49,11 +49,16 @@
             <div class="grid-item">
                 <img src="{{ownership.image.url}}" alt="house" />
                 <div class="grid-item-info">
-                    <h3 class="h3">{{ ownership.title }}</h3>
-                    <h4>{{ownership.city}}</h4>
+                    <div class="grid-item-info-header">
+                        <h3 class="grid-item-info-title">{{ ownership.title }}</h3>
+                        <h4 class="grid-item-info-city">{{ownership.city}}</h4>
+                    </div>
+                    
+                    <div class="grid-item-info-services">
                     {% for service in ownership.services.all %}
                         <p>{{ service }} <pre> </pre></p>
                     {% endfor %}
+                </div>
                     <div class="grid-item-info-action">
                         <div class="grid-item-info-action-price">
                             <p class="grid-item-info-action-price-number">${{ownership.dailyRate}} <pre> </pre></p>

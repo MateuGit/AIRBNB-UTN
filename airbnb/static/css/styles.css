@@ -165,8 +165,8 @@
   grid-template-columns: repeat(auto-fit, 40rem);
   grid-column-gap: 5rem;
   grid-row-gap: 2rem;
-  justify-content: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  padding: 0 4rem;
 }
 
 .grid-item {
@@ -189,6 +189,23 @@
 }
 .grid-item-info * {
   margin: 1rem 0;
+}
+.grid-item-info-header {
+  display: flex;
+  align-items: center;
+}
+.grid-item-info-title {
+  font-size: 3rem;
+  font-weight: 600;
+}
+.grid-item-info-city {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-left: 2rem;
+}
+.grid-item-info-services {
+  display: flex;
+  font-size: 2rem;
 }
 .grid-item-info-action {
   display: flex;
@@ -257,6 +274,7 @@
   border-radius: 3rem 0 0 3rem;
   width: 64%;
   height: 100%;
+  padding-bottom: 2rem;
 }
 .house .house-content-img {
   width: 100%;
@@ -278,6 +296,8 @@
   display: flex;
   align-items: flex-end;
   margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  margin-left: 1rem;
 }
 .house .house-content-info .info-address img {
   height: 2rem;
@@ -288,11 +308,13 @@
 .house .house-content-info-row .text-md {
   color: #676767;
   margin-bottom: 1rem;
-  font-size: 1.5rem;
+  margin-left: 1rem;
+  font-size: 1.8rem;
 }
 .house .house-content-info-col {
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
 }
 .house .house-content-info-col ul {
   list-style: none;
@@ -306,10 +328,10 @@
   margin-bottom: 1rem;
 }
 .house .house-reserve {
-  width: 30%;
+  width: 32%;
   background-color: #ffffff;
   border-radius: 0 3rem 3rem 0;
-  padding: 2rem 1rem;
+  padding: 2rem 2rem;
   border-left: 1px solid #ebebeb;
 }
 .house .house-reserve .price-row {
@@ -341,6 +363,13 @@
 
 .form-control-reserve {
   margin-top: 2rem !important;
+}
+
+#date-message {
+  color: red;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: all 0.1s ease-in;
 }
 
 *,

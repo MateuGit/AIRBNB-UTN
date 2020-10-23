@@ -7,14 +7,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 40rem);
   grid-column-gap: 5rem;
-  grid-row-gap: 2rem;
-  justify-content: center;
-  margin-top: 2rem;
+  grid-row-gap: 2rem;  
+  margin-top: 3rem;
+  padding: 0 4rem;
 }
 
 .grid-item {
-  // width: 25rem;
-  // height: 25rem;
   background-color: $color-grey-ultra-light;
   border-radius: $border-radius-3;
   transition: all 0.1s ease-in;
@@ -32,7 +30,24 @@
     & * {
       margin: 1rem 0;
     }
-
+    &-header{
+      display: flex;
+      align-items: center;
+      
+    }
+    &-title{
+      font-size: $font-size-md;
+      font-weight: 600;
+    }
+    &-city{
+      font-size: $font-size-sm;
+      font-weight: 400;
+      margin-left: 2rem;
+    }
+    &-services{
+      display: flex;
+      font-size: $font-size-micro + 0.5rem;
+    }
     &-action {
       display: flex;
       justify-content: space-between;

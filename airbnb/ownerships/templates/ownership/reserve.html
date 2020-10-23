@@ -35,7 +35,7 @@
         </div>
         <div class="house-reserve">
             <div class="reserve-row price-row">
-                <h3 class="h3-2">${{ownership.dailyRate}}</h3>
+                <h3 class="h3-2" id="daily-rate">${{ownership.dailyRate}}</h3>
                 <p class="p-font-md">por noche</p>
             </div>
             <div class="reserve-row">
@@ -43,14 +43,15 @@
                     <div class="form-control-row">
                         <div class="form-control ">
                             <label for="from" class="text-light">Desde</label>
-                            <input class="input-sm input-reserve" type="date" name="from" />
+                            <input class="input-sm input-reserve" type="date"  name="from" id="from"/>
                         </div>
                         <div class="form-control ">
                             <label for="to" class="text-light">Hasta</label>
-                            <input class="input-sm input-reserve" type="date" name="to" />
+                            <input class="input-sm input-reserve" type="date" name="to" id="to"/>
                         </div>
                     </div>
-                    <div class="form-control form-control-reserve">
+                    <p id="date-message"></p>
+                    <div class="form-control form-control-reserve" style="margin-top: 1rem;">
                         <label for="guests" class="text-light">Huéspedes</label>
                         <input class="input-sm input-reserve input-reserve-sm" type="number" name="guests" />
                     </div>
@@ -67,11 +68,11 @@
             <div class="summary">
                 <div class="summary-row">
                     <div class="summary-row-col">
-                        <p class="p-font-md">$5750</p>
-                        <p class="p-font-md">por 3 noche/s</p>
+                        <p class="p-font-md" id="summary-price-night">$5750</p>
+                        <p class="p-font-md" style="margin-left: 0.5rem;" id="summary-amount-nights"> por 3 noche/s</p>
                     </div>
                     <div class="summary-row-col">
-                        <p class="p-font-md text-regular">$17450</p>
+                        <p class="p-font-md text-regular" id="summary-price">$17450</p>
                     </div>
                 </div>
                 <div class="summary-row">
@@ -79,7 +80,7 @@
                         <p class="p-font-md">Comisión</p>
                     </div>
                     <div class="summary-row-col">
-                        <p class="p-font-md text-regular">${{commission}}</p>
+                        <p class="p-font-md text-regular" id="fee">${{commission}}</p>
                     </div>
                 </div>
                 <div class="summary-row">
@@ -87,7 +88,7 @@
                         <p class="p-font-md-2 text-bold">Total</p>
                     </div>
                     <div class="summary-row-col">
-                        <p class="p-font-md-2 text-bold">$18750</p>
+                        <p class="p-font-md-2 text-bold" id="total-price">$18750</p>
                     </div>
                 </div>
             </div>
@@ -96,5 +97,6 @@
             </div>
         </div>
     </section>
+    <script src="{%  static  'js/app.js'  %}"></script>
 </body>
 </html>
