@@ -9,12 +9,21 @@ def landing(request):
     return render(request, 'ownership/landing.html', {'ownerships':ownerships, 'cities':cities})
 
 def grid(request):
-    cityId = request.GET['city']
-    dateFrom = request.GET['from']
-    dateTo = request.GET['to']
-    guests = request.GET['guests']
+    cityId=1
+    dateFrom = ''
+    dateTo = ''
+    guests = 1
     dateFromPrint = ''
     dateToPrint = ''
+
+    if ('city' in request.GET):
+        cityId = request.GET['city']
+    if ('from' in request.GET):
+        dateFrom = request.GET['from']
+    if ('to' in request.GET):
+        dateTo = request.GET['to']
+    if ('guests' in request.GET):
+        guests = request.GET['guests']
 
     if(dateFrom == ''):
         dateFrom = datetime.now()
@@ -43,12 +52,19 @@ def grid(request):
 def reserve(request, ownership_id):
     ownership = get_object_or_404(Ownership, pk=ownership_id)
     commission = ownership.dailyRate * 0.08
+    cityId=1
+    dateFrom = ''
+    dateTo = ''
+    guests = 1
 
-    cityId = request.GET['city']
-    dateFrom = request.GET['from']
-    dateTo = request.GET['to']
-    guests = request.GET['guests']
-    print(dateFrom)
+    if ('city' in request.GET):
+        cityId = request.GET['city']
+    if ('from' in request.GET):
+        dateFrom = request.GET['from']
+    if ('to' in request.GET):
+        dateTo = request.GET['to']
+    if ('guests' in request.GET):
+        guests = request.GET['guests']
 
     return render(request, 'ownership/reserve.html', {'ownership':ownership, "commission":commission, 'cityId':int(cityId),
     'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests)})
