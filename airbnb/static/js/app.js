@@ -56,9 +56,11 @@ const calculateNights = () => {
 
 const calculate = (value) => {
     
-    summaryAmountNights.innerHTML = value == 1 ?  `por 1 noche` : `por ${value} noches`;
+    // summaryAmountNights.innerHTML = value == 1 ?  `por 1 noche` : `por ${value} noches`;
     temporalPrice = Number(priceNight) * Number(value);
     summaryPrice.innerHTML ='$' + temporalPrice;
+    console.log(Number(temporalPrice))
+    console.log(Number(feeNumber))
     finalPrice = Number(temporalPrice) + Number(feeNumber);
     totalPrice.innerHTML = '$' + finalPrice;
 }

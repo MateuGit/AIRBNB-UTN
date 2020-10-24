@@ -16,11 +16,9 @@
                     <select name="city" id="" class="input-md">
                         {% for city in cities %}
                             
-                            {% if cityId == city.id %}
-                                <option selected="true" disabled="disabled" name="city" value="{{city.id}}">{{city.name}}asddssdadsa</option>
+                            {% if city.id == cityId %}
+                                <option selected="true" name="city" value="{{city.id}}">{{city.name}}</option>
                             {% else %}
-                                {{city.id}}
-                                {{cityId}}
                                 <option name="city" value="{{city.id}}">{{city.name}}</option>
                             {% endif %}     
                         {% endfor %}
@@ -30,16 +28,30 @@
                 <div class="form-control-row">
                     <div class="form-control">
                         <label for="from">Desde</label>
-                        <input class="input-sm" type="date" name="from" />
+                        {% if dateFrom %}
+                            <input value="{{dateFrom}}" class="input-sm" type="date" name="from" />
+                        {% else %}
+                            <input class="input-sm" type="date" name="from" />
+                        {% endif %}
                     </div>
                     <div class="form-control">
                         <label for="to">Hasta</label>
-                        <input class="input-sm" type="date" name="to" />
+                        {% if dateTo %}
+                            <input value="{{dateTo}}" class="input-sm" type="date" name="to" />
+                        {% else %}
+                            <input class="input-sm" type="date" name="to" />
+                        {% endif %}
+                        
                     </div>
                 </div>
                 <div class="form-control">
                     <label for="guests">Huéspedes</label>
-                    <input class="input-md" type="number" name="guests" />
+                    
+                    {% if guests %}
+                        <input value="{{guests}}" class="input-md" type="number" name="guests" />
+                    {% else %}
+                        <input class="input-md" type="number" name="guests" />
+                    {% endif %}
                 </div>
                 <button class="btn-action">Buscar</button>
             </form>
@@ -51,6 +63,7 @@
                 <div class="grid-item-info">
                     <div class="grid-item-info-header">
                         <h3 class="grid-item-info-title">{{ ownership.title }}</h3>
+                        <!-- <img src="../../../static/media/icons/location-icon.png" alt="location"/> -->
                         <h4 class="grid-item-info-city">{{ownership.city}}</h4>
                     </div>
                     
@@ -64,7 +77,9 @@
                             <p class="grid-item-info-action-price-number">${{ownership.dailyRate}} <pre> </pre></p>
                             <p class="grid-item-info-action-price-per-night">por noche</p>
                         </div>
-                        <button class="btn-action-item" onclick="location.href='{% url 'reserve' ownership.id %}'">Ver</button>
+                        
+     
+                        <button class="btn-action-item" onclick="location.href='{% url 'reserve' ownership.id %}?city={{cityId}}&from={{dateFromPrint}}&to={{dateToPrint}}&guests={{guests}}'">Ver</button>
                     </div>
                 </div>
             </div>

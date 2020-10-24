@@ -9,28 +9,46 @@ def landing(request):
     return render(request, 'ownership/landing.html', {'ownerships':ownerships, 'cities':cities})
 
 def grid(request):
-    cityId = request.GET.get('city')
+    cityId = request.GET['city']
     dateFrom = request.GET['from']
     dateTo = request.GET['to']
     guests = request.GET['guests']
+    dateFromPrint = ''
+    dateToPrint = ''
 
     if(dateFrom == ''):
         dateFrom = datetime.now()
+    else:
+        dateFrom = str(dateFrom).split(' ')[0]
+        dateFromPrint = dateFrom
 
     if(dateTo == ''):
-        dateTo = datetime.now() + timedelta(days=360)
+        dateTo = datetime.now() + timedelta(days=1)
+    else:
+        dateTo = str(dateTo).split(' ')[0]
+        dateToPrint = dateTo
 
     if(guests == ''):
         guests = 1
 
-    ownerships = Ownership.objects.filter(city_id=cityId, rentPeriods__minimumDate__gte= dateFrom, 
-    rentPeriods__maximumDate__lte= dateTo, maximumPeopleAmount__gte=guests)
+    ownerships = Ownership.objects.filter(city_id=cityId, rentPeriods__minimumDate__lte= dateFrom, 
+    rentPeriods__maximumDate__gte= dateTo, maximumPeopleAmount__gte=guests)
 
     cities = City.objects.all()
 
-    return render(request, 'ownership/grid.html', {'ownerships':ownerships, 'cities':cities, 'cityId':cityId})
+    return render(request, 'ownership/grid.html', {'ownerships':ownerships, 'cities':cities, 
+    'cityId':int(cityId),'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests), 
+    'dateFromPrint':dateFromPrint, 'dateToPrint':dateToPrint})
 
 def reserve(request, ownership_id):
     ownership = get_object_or_404(Ownership, pk=ownership_id)
     commission = ownership.dailyRate * 0.08
-    return render(request, 'ownership/reserve.html', {'ownership':ownership, "commission":commission})
+
+    cityId = request.GET['city']
+    dateFrom = request.GET['from']
+    dateTo = request.GET['to']
+    guests = request.GET['guests']
+    print(dateFrom)
+
+    return render(request, 'ownership/reserve.html', {'ownership':ownership, "commission":commission, 'cityId':int(cityId),
+    'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests)})

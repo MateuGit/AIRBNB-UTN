@@ -11,10 +11,10 @@
     <section class="house">
         <div class="house-content">
             <img class="house-content-img" src="{{ownership.image.url}}" alt="house" />
-            <a class="btn-back" onclick="location.href='{% url 'ownerships' %}'">Atrás</a>
+            <a class="btn-back" onclick="location.href='{% url 'ownerships' %}?city={{cityId}}&from={{dateFrom}}&to={{dateTo}}&guests={{guests}}'">Atrás</a>
             <div class="house-content-info">
                 <div class="house-content-info-row">
-                    <h2 class="h2">La mejor casa</h2>
+                    <h2 class="h2">{{ownership.title}}</h2>
                     <div class="info-address">
                         <img src="../../../static/media/icons/location-icon.png" alt="location" />
                         <p>{{ownership.city}}</p>
@@ -53,7 +53,8 @@
                     <p id="date-message"></p>
                     <div class="form-control form-control-reserve" style="margin-top: 1rem;">
                         <label for="guests" class="text-light">Huéspedes</label>
-                        <input class="input-sm input-reserve input-reserve-sm" type="number" name="guests" />
+                        <!-- <input class="input-sm input-reserve input-reserve-sm" type="number" name="guests" /> -->
+                        <p class="p-font-md text-regular" id="fee">Maxima cantidad de huespedes: {{ownership.maximumPeopleAmount}}</p>
                     </div>
                     <div class="form-control form-control-reserve">
                         <label for="firstname" class="text-light">Nombre</label>
@@ -69,7 +70,7 @@
                 <div class="summary-row">
                     <div class="summary-row-col">
                         <p class="p-font-md" id="summary-price-night">$5750</p>
-                        <p class="p-font-md" style="margin-left: 0.5rem;" id="summary-amount-nights"> por 3 noche/s</p>
+                        <p class="p-font-md" style="margin-left: 0.5rem;" id="summary-amount-nights"> por noche</p>
                     </div>
                     <div class="summary-row-col">
                         <p class="p-font-md text-regular" id="summary-price">$17450</p>
