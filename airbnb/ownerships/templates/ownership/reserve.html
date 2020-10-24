@@ -39,7 +39,7 @@
                 <p class="p-font-md">por noche</p>
             </div>
             <div class="reserve-row">
-                <form action="">
+                <form action="{% url 'confirmation' %}" method="POST">{% csrf_token %}
                     <div class="form-control-row">
                         <div class="form-control ">
                             <label for="from" class="text-light">Desde</label>
@@ -64,37 +64,43 @@
                         <label for="lastname" class="text-light">Apellido</label>
                         <input class="input-sm input-reserve" type="text" name="lastname" />
                     </div>
+                    <div class="form-control form-control-reserve">
+                        <label for="email" class="text-light">Email</label>
+                        <input class="input-sm input-reserve" type="email" name="email" />
+                    </div>
+                    <div class="summary">
+                        <div class="summary-row">
+                            <div class="summary-row-col">
+                                <p class="p-font-md" id="summary-price-night"></p>
+                                <p class="p-font-md" style="margin-left: 0.5rem;" id="summary-amount-nights"> x noche</p>
+                            </div>
+                            <div class="summary-row-col">
+                                <p class="p-font-md text-regular" id="summary-price"></p>
+                            </div>
+                        </div>
+                        <div class="summary-row">
+                            <div class="summary-row-col">
+                                <p class="p-font-md">Comisión</p>
+                            </div>
+                            <div class="summary-row-col">
+                                <p class="p-font-md text-regular" id="fee"></p>
+                            </div>
+                        </div>
+                        <div class="summary-row">
+                            <div class="summary-row-col">
+                                <p class="p-font-md-3 text-bold">Total</p>
+                            </div>
+                            <div class="summary-row-col">
+                                <p class="p-font-md-3 text-bold" id="total-price"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reserve-row">
+                        <button class="btn-action">Reservar</button>
+                        <!-- <input type="submit" value="Reservar" class="btn-action"> -->
+                    </div>
                 </form>
-            </div>
-            <div class="summary">
-                <div class="summary-row">
-                    <div class="summary-row-col">
-                        <p class="p-font-md" id="summary-price-night">$5750</p>
-                        <p class="p-font-md" style="margin-left: 0.5rem;" id="summary-amount-nights"> por noche</p>
-                    </div>
-                    <div class="summary-row-col">
-                        <p class="p-font-md text-regular" id="summary-price">$17450</p>
-                    </div>
-                </div>
-                <div class="summary-row">
-                    <div class="summary-row-col">
-                        <p class="p-font-md">Comisión</p>
-                    </div>
-                    <div class="summary-row-col">
-                        <p class="p-font-md text-regular" id="fee">${{commission}}</p>
-                    </div>
-                </div>
-                <div class="summary-row">
-                    <div class="summary-row-col">
-                        <p class="p-font-md-3 text-bold">Total</p>
-                    </div>
-                    <div class="summary-row-col">
-                        <p class="p-font-md-3 text-bold" id="total-price">$18750</p>
-                    </div>
-                </div>
-            </div>
-            <div class="reserve-row">
-                <button class="btn-action">Reservar</button>
+
             </div>
         </div>
     </section>

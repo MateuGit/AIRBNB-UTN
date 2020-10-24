@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime, timedelta
 from .models import Ownership, City
+from rentdates.models import RentDate
 
 # Create your views here.
 def landing(request):
@@ -41,7 +42,17 @@ def grid(request):
         guests = 1
 
     ownerships = Ownership.objects.filter(city_id=cityId, rentPeriods__minimumDate__lte= dateFrom, 
-    rentPeriods__maximumDate__gte= dateTo, maximumPeopleAmount__gte=guests)
+        rentPeriods__maximumDate__gte= dateTo, maximumPeopleAmount__gte=guests)
+
+    ownerships = list(ownerships)
+
+    for ownership in ownerships:
+        ownershipRentDates = RentDate.objects.filter(ownership=ownership, 
+        date__gte=dateFrom, date__lte=dateTo)
+
+        if ownershipRentDates.exists():
+           ownerships.remove(ownership)
+
 
     cities = City.objects.all()
 
@@ -68,3 +79,13 @@ def reserve(request, ownership_id):
 
     return render(request, 'ownership/reserve.html', {'ownership':ownership, "commission":commission, 'cityId':int(cityId),
     'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests)})
+
+def confirmation(request):
+    print("entroooo")
+    print("entroooo")
+    print("entroooo")
+    print("entroooo")
+    print("entroooo")
+    print("entroooo")
+
+    return render(request, 'ownership/confirmation.html')

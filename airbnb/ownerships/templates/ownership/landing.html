@@ -17,7 +17,7 @@
         </div>
         <div class="search-box">
             <div  class="form-landing">
-                <form action="/propiedades/">
+                <form action="{% url 'ownerships' %}">
                     <div class="form-control">
                         <label for="city">Ciudad</label>
                         <select name="city" id="" class="input-md">
@@ -29,11 +29,11 @@
                     <div class="form-control-row">
                         <div class="form-control">
                             <label for="from">Desde</label>
-                            <input class="input-sm" type="date" name="from" id="landing-from" required/>
+                            <input class="input-sm" type="date" name="from" id="landing-from"/>
                         </div>
                         <div class="form-control">
                             <label for="to">Hasta</label>
-                            <input class="input-sm" type="date" name="to" id="landing-to" required/>
+                            <input class="input-sm" type="date" name="to" id="landing-to"/>
                         </div>
                         
                     </div>
