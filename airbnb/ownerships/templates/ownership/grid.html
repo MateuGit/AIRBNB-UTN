@@ -29,21 +29,22 @@
                     <div class="form-control">
                         <label for="from">Desde</label>
                         {% if dateFrom %}
-                            <input value="{{dateFrom}}" class="input-sm" type="date" name="from" />
+                            <input value="{{dateFrom}}" class="input-sm" type="date" name="from" id="landing-from"/>
                         {% else %}
-                            <input class="input-sm" type="date" name="from" />
+                            <input class="input-sm" type="date" name="from" id="landing-from"/>
                         {% endif %}
                     </div>
                     <div class="form-control">
                         <label for="to">Hasta</label>
                         {% if dateTo %}
-                            <input value="{{dateTo}}" class="input-sm" type="date" name="to" />
+                            <input value="{{dateTo}}" class="input-sm" type="date" name="to" id="landing-to"/>
                         {% else %}
-                            <input class="input-sm" type="date" name="to" />
+                            <input class="input-sm" type="date" name="to" id="landing-to"/>
                         {% endif %}
                         
                     </div>
                 </div>
+                <p id="text-error"></p>
                 <div class="form-control">
                     <label for="guests">Huéspedes</label>
                     
@@ -89,5 +90,6 @@
             {% endfor %}
         </div>
     </section>
+    <script src="{%  static  'js/landing.js'  %}"></script>
 </body>
 </html>
