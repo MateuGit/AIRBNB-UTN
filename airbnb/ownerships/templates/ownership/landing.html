@@ -29,21 +29,24 @@
                     <div class="form-control-row">
                         <div class="form-control">
                             <label for="from">Desde</label>
-                            <input class="input-sm" type="date" name="from" />
+                            <input class="input-sm" type="date" name="from" id="landing-from" required/>
                         </div>
                         <div class="form-control">
                             <label for="to">Hasta</label>
-                            <input class="input-sm" type="date" name="to" />
+                            <input class="input-sm" type="date" name="to" id="landing-to" required/>
                         </div>
+                        
                     </div>
+                    <p id="text-error"></p>
                     <div class="form-control">
                         <label for="guests">Huéspedes</label>
                         <input class="input-md" type="number" name="guests" min="1" value="1"/>
                     </div>
-                    <button class="btn-action">Buscar</button>
+                    <button class="btn-action btn-action-landing">Buscar</button>
                 </form>
             </div>
         </div>
     </section>
+    <script src="{%  static  'js/landing.js'  %}"></script>
 </body>
 </html>

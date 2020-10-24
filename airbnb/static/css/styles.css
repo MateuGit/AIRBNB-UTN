@@ -35,6 +35,10 @@
   font-size: 2rem;
 }
 
+.p-font-md-3 {
+  font-size: 2.5rem;
+}
+
 .text-light {
   font-weight: 500 !important;
 }
@@ -45,6 +49,14 @@
 
 .text-bold {
   font-weight: 700;
+}
+
+#text-error {
+  color: red;
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  margin-top: -2rem;
+  transition: all 0.1s ease;
 }
 
 .btn, .btn-back, .btn-action, .btn-action-item {
@@ -192,7 +204,18 @@
 }
 .grid-item-info-header {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+.grid-item-info-header-city {
+  display: flex;
+  width: 50%;
+  margin: -1.6rem 0;
+}
+.grid-item-info-header-city img {
+  width: 2rem;
+  height: 2rem;
+  margin-right: -2rem;
+  margin-bottom: -1.5rem;
 }
 .grid-item-info-title {
   font-size: 3rem;
@@ -258,6 +281,10 @@
   .landing .search-box {
     padding: 0;
   }
+}
+
+.btn-action-landing {
+  margin-left: 1.5rem;
 }
 
 .house {

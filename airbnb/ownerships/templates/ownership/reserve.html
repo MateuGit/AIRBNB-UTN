@@ -53,8 +53,8 @@
                     <p id="date-message"></p>
                     <div class="form-control form-control-reserve" style="margin-top: 1rem;">
                         <label for="guests" class="text-light">Huéspedes</label>
-                        <!-- <input class="input-sm input-reserve input-reserve-sm" type="number" name="guests" /> -->
-                        <p class="p-font-md text-regular" id="fee">Maxima cantidad de huespedes: {{ownership.maximumPeopleAmount}}</p>
+                        <input class="input-sm input-reserve input-reserve-sm" type="number" name="guests" value="{{ownership.maximumPeopleAmount}}" disabled/>
+                        <!-- <p class="p-font-md text-regular">Maxima cantidad de huespedes: {{ownership.maximumPeopleAmount}}</p> -->
                     </div>
                     <div class="form-control form-control-reserve">
                         <label for="firstname" class="text-light">Nombre</label>
@@ -86,10 +86,10 @@
                 </div>
                 <div class="summary-row">
                     <div class="summary-row-col">
-                        <p class="p-font-md-2 text-bold">Total</p>
+                        <p class="p-font-md-3 text-bold">Total</p>
                     </div>
                     <div class="summary-row-col">
-                        <p class="p-font-md-2 text-bold" id="total-price">$18750</p>
+                        <p class="p-font-md-3 text-bold" id="total-price">$18750</p>
                     </div>
                 </div>
             </div>

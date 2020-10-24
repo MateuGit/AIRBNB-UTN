@@ -34,7 +34,9 @@
   .p-font-md-2 {
     font-size: $font-size-sm;
   }
-  
+  .p-font-md-3 {
+    font-size: $font-size-sm-2;
+  }
   .text-light{
     font-weight: 500 !important;
   }
@@ -45,4 +47,12 @@
   
   .text-bold {
     font-weight: 700;
+  }
+
+  #text-error{
+    color: red;
+    font-size: $font-size-micro;
+    margin-left: 2rem;
+    margin-top: -2rem;
+    transition: all .1s ease;
   }
