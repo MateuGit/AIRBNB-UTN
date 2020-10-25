@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{%  static  'css/styles.css'  %}">
-    <title>Document</title>
+    <title>UTN</title>
 </head>
 <body>
     <section class="house">
@@ -43,11 +43,11 @@
                     <div class="form-control-row">
                         <div class="form-control ">
                             <label for="from" class="text-light">Desde</label>
-                            <input value="{{dateFrom}}" class="input-sm input-reserve" type="date"  name="from" id="from"/>
+                            <input value="{{dateFrom}}" class="input-sm input-reserve" type="date" required  name="from" id="from"/>
                         </div>
                         <div class="form-control ">
                             <label for="to" class="text-light">Hasta</label>
-                            <input value="{{dateTo}}" class="input-sm input-reserve" type="date" name="to" id="to"/>
+                            <input value="{{dateTo}}" class="input-sm input-reserve" type="date" required name="to" id="to"/>
                         </div>
                     </div>
                     <p id="date-message"></p>
@@ -58,11 +58,14 @@
                     </div>
                     <div class="form-control form-control-reserve">
                         <label for="firstname" class="text-light">Nombre</label>
-                        <input class="input-sm input-reserve" type="text" name="firstname" />
+                        <input class="input-sm input-reserve" type="text" required name="firstname" />
                     </div>
                     <div class="form-control form-control-reserve">
                         <label for="lastname" class="text-light">Apellido</label>
-                        <input class="input-sm input-reserve" type="text" name="lastname" />
+                        <input class="input-sm input-reserve" type="text" required name="lastname" />
+                    </div>
+                    <div class="reserve-row">
+                        <button class="btn-action" id="reserve-btn" type="submit">Reservar</button>
                     </div>
                 </form>
             </div>
@@ -93,9 +96,7 @@
                     </div>
                 </div>
             </div>
-            <div class="reserve-row">
-                <button class="btn-action">Reservar</button>
-            </div>
+            
         </div>
     </section>
     <script src="{%  static  'js/app.js'  %}"></script>

@@ -111,7 +111,12 @@
 
   #date-message{
     color: red;
-    font-size: $font-size-micro;
+    font-size: $font-size-micro; 
     opacity: 0;
     transition: all .1s ease-in;
+  }
+
+  #reserve-btn{
+    position: absolute;
+    top:104%;
   }

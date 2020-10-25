@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{%  static  'css/styles.css'  %}">
-    <title>Document</title>
+    <title>UTN</title>
 </head>
 <body>
     <section class="houses-grid">
@@ -13,7 +13,7 @@
             <form action="" class="form-nav">
                 <div class="form-control">
                     <label for="city">Ciudad</label>
-                    <select name="city" id="" class="input-md">
+                    <select name="city" id="" class="input-md" required>
                         {% for city in cities %}
                             
                             {% if city.id == cityId %}
@@ -29,17 +29,17 @@
                     <div class="form-control">
                         <label for="from">Desde</label>
                         {% if dateFrom %}
-                            <input value="{{dateFrom}}" class="input-sm" type="date" name="from" id="landing-from"/>
+                            <input value="{{dateFrom}}" class="input-sm" type="date" name="from" required id="landing-from"/>
                         {% else %}
-                            <input class="input-sm" type="date" name="from" id="landing-from"/>
+                            <input class="input-sm" type="date" required name="from" id="landing-from"/>
                         {% endif %}
                     </div>
                     <div class="form-control">
                         <label for="to">Hasta</label>
                         {% if dateTo %}
-                            <input value="{{dateTo}}" class="input-sm" type="date" name="to" id="landing-to"/>
+                            <input value="{{dateTo}}" class="input-sm" required type="date" name="to" id="landing-to"/>
                         {% else %}
-                            <input class="input-sm" type="date" name="to" id="landing-to"/>
+                            <input class="input-sm" type="date" name="to" required id="landing-to"/>
                         {% endif %}
                         
                     </div>
@@ -49,9 +49,9 @@
                     <label for="guests">Huéspedes</label>
                     
                     {% if guests %}
-                        <input value="{{guests}}" class="input-md" type="number" name="guests" />
+                        <input value="{{guests}}" class="input-md" required type="number" name="guests" />
                     {% else %}
-                        <input class="input-md" type="number" name="guests" />
+                        <input class="input-md" type="number" required name="guests" />
                     {% endif %}
                 </div>
                 <button class="btn-action">Buscar</button>
