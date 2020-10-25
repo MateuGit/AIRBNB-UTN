@@ -40,6 +40,7 @@
             </div>
             <div class="reserve-row">
                 <form action="{% url 'confirmation' %}" method="POST">{% csrf_token %}
+                    <input type="hidden" name="ownership" id="ownership" value="{{ownership.id}}"> 
                     <div class="form-control-row">
                         <div class="form-control ">
                             <label for="from" class="text-light">Desde</label>

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from datetime import datetime, timedelta
 from .models import Ownership, City
 from rentdates.models import RentDate
+from reservations.models import Reservation
 
 # Create your views here.
 def landing(request):
@@ -81,11 +82,18 @@ def reserve(request, ownership_id):
     'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests)})
 
 def confirmation(request):
-    print("entroooo")
-    print("entroooo")
-    print("entroooo")
-    print("entroooo")
-    print("entroooo")
-    print("entroooo")
+    #1ra Parte
+    ownership = get_object_or_404(Ownership, pk=request.POST['ownership'])
+
+    r = Reservation(1, request.POST['firstname'], request.POST['lastname'], 
+    request.POST['email'], ownership)
+    # r = Reservation()
+    # r.code=1
+    # r.clientName=request.POST['firstname']
+    # r.clientLastName=request.POST['lastname']
+    # r.clientEmail=request.POST['email']
+    # r.ownership=ownership
+    r.save()
+  
 
     return render(request, 'ownership/confirmation.html')
