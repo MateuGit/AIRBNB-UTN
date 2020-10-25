@@ -25,7 +25,7 @@ class Ownership(models.Model):
         ,verbose_name=" max people amount")
     dailyRate = models.IntegerField(default=1,validators=[MinValueValidator(1)], verbose_name="daily rate")
     city = models.ForeignKey('City', on_delete=models.SET_NULL,null=True)
-    rentPeriods = models.ManyToOne('RentPeriod', on_delete=models.SET_NULL, null=True, verbose_name="list of rent periods")
+    rentPeriods = models.ManyToManyField('RentPeriod', verbose_name="list of rent periods")
     image = models.ImageField(upload_to='images/')
 
     def __str__(self):
