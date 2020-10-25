@@ -25,7 +25,7 @@ class Ownership(models.Model):
         ,verbose_name=" max people amount")
     dailyRate = models.IntegerField(default=1,validators=[MinValueValidator(1)], verbose_name="daily rate")
     city = models.ForeignKey('City', on_delete=models.SET_NULL,null=True)
-    rentDates = models.OneToManyField('RentDate', verbose_name="list of rent dates")
+    rentPeriods = models.ManyToManyField('RentPeriod', verbose_name="list of rent periods")
     image = models.ImageField(upload_to='images/')
 
     def __str__(self):
@@ -37,21 +37,21 @@ class Service(models.Model):
     def __str__(self):
         return self.name
 
-# class RentPeriod(models.Model):
-#     user = models.ForeignKey(
-#         settings.AUTH_USER_MODEL,
-#         on_delete=models.CASCADE
-#     )
-#     minimumDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now, validators=[todayDateValidation])
-#     maximumDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now)
+class RentPeriod(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    minimumDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now, validators=[todayDateValidation])
+    maximumDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now)
 
-#     def save(self, force_insert=False, force_update=False):
-#         if self.maximumDate < self.minimumDate:
-#             raise ValidationError('La fecha maxima tiene que ser mayor que la fecha minima.')
-#         models.Model.save(self, force_insert, force_update)
+    def save(self, force_insert=False, force_update=False):
+        if self.maximumDate < self.minimumDate:
+            raise ValidationError('La fecha maxima tiene que ser mayor que la fecha minima.')
+        models.Model.save(self, force_insert, force_update)
 
-#     def __str__(self):
-#         return self.minimumDate.strftime(" %d-%m-%Y") + ' / ' + self.maximumDate.strftime(" %d-%m-%Y")
+    def __str__(self):
+        return self.minimumDate.strftime(" %d-%m-%Y") + ' / ' + self.maximumDate.strftime(" %d-%m-%Y")
 
 class City(models.Model):
     name = models.CharField(max_length=50)
