@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from .models import Ownership, City
 from rentdates.models import RentDate
 from reservations.models import Reservation
+import uuid 
 
 # Create your views here.
 def landing(request):
@@ -97,12 +98,11 @@ def confirmation(request):
         if not dateExistsBetweenDates:
             
             try:
-                #1ra Parte
-                reservation = Reservation(code='10', clientName=request.POST['firstname'],clientLastName= request.POST['lastname'], 
+                reservation = Reservation(clientName=request.POST['firstname'],clientLastName= request.POST['lastname'], 
                 clientEmail= request.POST['email'], ownership=ownership)
                 reservation.save()
 
-                #2da Parte
+                #2da Parte 
                 for date in dateList:
                     rentDate = RentDate(ownership=ownership, date=date)
                     rentDate.reservation = reservation
