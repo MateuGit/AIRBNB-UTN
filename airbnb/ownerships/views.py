@@ -3,7 +3,8 @@ from datetime import datetime, timedelta
 from .models import Ownership, City
 from rentdates.models import RentDate
 from reservations.models import Reservation
-import uuid 
+from .processes import *
+
 
 # Create your views here.
 def landing(request):
@@ -12,22 +13,15 @@ def landing(request):
     return render(request, 'ownership/landing.html', {'ownerships':ownerships, 'cities':cities})
 
 def grid(request):
-    cityId=1
-    dateFrom = ''
-    dateTo = ''
-    guests = 1
+    cityId = setParameterValue(request,'city')
+    dateFrom = setParameterValue(request,'from')
+    dateTo = setParameterValue(request,'to')
+    guests = setParameterValue(request,'guests')
+    guests = setIfEmpty(guests,1)
     dateFromPrint = ''
     dateToPrint = ''
 
-    if ('city' in request.GET):
-        cityId = request.GET['city']
-    if ('from' in request.GET):
-        dateFrom = request.GET['from']
-    if ('to' in request.GET):
-        dateTo = request.GET['to']
-    if ('guests' in request.GET):
-        guests = request.GET['guests']
-
+    
     if(dateFrom == ''):
         dateFrom = datetime.now()
     else:
@@ -40,21 +34,10 @@ def grid(request):
         dateTo = str(dateTo).split(' ')[0]
         dateToPrint = dateTo
 
-    if(guests == ''):
-        guests = 1
-
     ownerships = Ownership.objects.filter(city_id=cityId, rentPeriods__minimumDate__lte= dateFrom, 
         rentPeriods__maximumDate__gte= dateTo, maximumPeopleAmount__gte=guests)
 
-    ownerships = list(ownerships)
-
-    for ownership in ownerships:
-        ownershipRentDates = RentDate.objects.filter(ownership=ownership, 
-        date__gte=dateFrom, date__lte=dateTo)
-
-        if ownershipRentDates.exists():
-           ownerships.remove(ownership)
-
+    ownerships = validateOwnershipsBetweenPeriods(dateFrom, dateTo,ownerships)
 
     cities = City.objects.all()
 
@@ -65,19 +48,10 @@ def grid(request):
 def reserve(request, ownership_id):
     ownership = get_object_or_404(Ownership, pk=ownership_id)
     commission = ownership.dailyRate * 0.08
-    cityId=1
-    dateFrom = ''
-    dateTo = ''
-    guests = 1
-
-    if ('city' in request.GET):
-        cityId = request.GET['city']
-    if ('from' in request.GET):
-        dateFrom = request.GET['from']
-    if ('to' in request.GET):
-        dateTo = request.GET['to']
-    if ('guests' in request.GET):
-        guests = request.GET['guests']
+    cityId = setParameterValue(request,'city')
+    dateFrom = setParameterValue(request,'from')
+    dateTo = setParameterValue(request,'to')
+    guests = setParameterValue(request,'guests')
 
     return render(request, 'ownership/reserve.html', {'ownership':ownership, "commission":commission, 'cityId':int(cityId),
     'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests)})
@@ -87,7 +61,7 @@ def confirmation(request):
     dateList = getDayList(request.POST['from'], daysAmount)
     ownership = get_object_or_404(Ownership, pk=request.POST['ownership'])
     errorMsg = ''
-
+    reservationCode=''
     periodExists = Ownership.objects.filter(pk=request.POST['ownership'], rentPeriods__minimumDate__lte= request.POST['from'], 
     rentPeriods__maximumDate__gte= request.POST['to']).exists()
 
@@ -98,19 +72,12 @@ def confirmation(request):
         if not dateExistsBetweenDates:
             
             try:
-                reservation = Reservation(clientName=request.POST['firstname'],clientLastName= request.POST['lastname'], 
-                clientEmail= request.POST['email'], ownership=ownership)
-                reservation.save()
-
+                reservation = saveReservation(request,ownership)   
+                reservationCode = reservation.code  
                 #2da Parte 
-                for date in dateList:
-                    rentDate = RentDate(ownership=ownership, date=date)
-                    rentDate.reservation = reservation
-                    rentDate.save()
-
+                saveRentDates(dateList,reservation,ownership)
                 #3ra Parte
-                reservation.totalPrice = round(reservation.ownership.dailyRate * daysAmount * 1.08 , 2)
-                reservation.save()
+                setReservationTotalPrice(reservation,daysAmount)
             except Exception as e:
                 errorMsg = e
         else:
@@ -118,7 +85,7 @@ def confirmation(request):
     else:
         errorMsg = "No existe el periodo ingresado para la propiedad."
 
-    return render(request, 'ownership/confirmation.html', {'errorMsg': errorMsg})
+    return render(request, 'ownership/confirmation.html', {'errorMsg': errorMsg,'reservationCode':reservationCode})
 
 def days_between(d1, d2):
     d1 = datetime.strptime(d1, "%Y-%m-%d")
