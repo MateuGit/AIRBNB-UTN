@@ -40,7 +40,7 @@ def saveReservation(request,ownership):
 def setReservationTotalPrice(reservation,daysAmount):
     reservation.totalPrice = round(reservation.ownership.dailyRate * daysAmount * 1.08 , 2)
     reservation.save()
-    
+
 def days_between(d1, d2):
     d1 = datetime.strptime(d1, "%Y-%m-%d")
     d2 = datetime.strptime(d2, "%Y-%m-%d")
