@@ -82,9 +82,56 @@ def reserve(request, ownership_id):
     'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests)})
 
 def confirmation(request):
-    #1ra Parte
+    daysAmount = days_between(request.POST['from'], request.POST['to'])
+    dateList = getDayList(request.POST['from'], daysAmount)
     ownership = get_object_or_404(Ownership, pk=request.POST['ownership'])
-    r = Reservation(code=10, clientName=request.POST['firstname'],clientLastName= request.POST['lastname'], 
-    clientEmail= request.POST['email'], ownership=ownership)
-    r.save()
-    return render(request, 'ownership/confirmation.html')
+    errorMsg = ''
+
+    periodExists = Ownership.objects.filter(pk=request.POST['ownership'], rentPeriods__minimumDate__lte= request.POST['from'], 
+    rentPeriods__maximumDate__gte= request.POST['to']).exists()
+
+    if periodExists:
+
+        dateExistsBetweenDates = RentDate.objects.filter(ownership=ownership, date__in=dateList).exists()
+
+        if not dateExistsBetweenDates:
+            
+            try:
+                #1ra Parte
+                reservation = Reservation(code='10', clientName=request.POST['firstname'],clientLastName= request.POST['lastname'], 
+                clientEmail= request.POST['email'], ownership=ownership)
+                reservation.save()
+
+                #2da Parte
+                for date in dateList:
+                    rentDate = RentDate(ownership=ownership, date=date)
+                    rentDate.reservation = reservation
+                    rentDate.save()
+
+                #3ra Parte
+                reservation.totalPrice = round(reservation.ownership.dailyRate * daysAmount * 1.08 , 2)
+                reservation.save()
+            except Exception as e:
+                errorMsg = e
+        else:
+            errorMsg = "Hay fechas alquiladas en el periodo seleccionado."
+    else:
+        errorMsg = "No existe el periodo ingresado para la propiedad."
+
+    return render(request, 'ownership/confirmation.html', {'errorMsg': errorMsg})
+
+def days_between(d1, d2):
+    d1 = datetime.strptime(d1, "%Y-%m-%d")
+    d2 = datetime.strptime(d2, "%Y-%m-%d")
+    days = timedelta(1)
+    new_date = d1 - days
+    return abs((d2 - new_date).days)
+
+def getDayList(dateFrom, daysAmount):
+    dayList = []
+    d1 = datetime.strptime(dateFrom, "%Y-%m-%d")
+    for i in range(daysAmount):
+        date = d1 + timedelta(days=i)
+        # dayList.append(str(date.year) + '-' + str(date.month) + '-' + str(date.day))
+        dayList.append(date)
+    return dayList

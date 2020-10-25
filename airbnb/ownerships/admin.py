@@ -4,14 +4,12 @@ from django.core.exceptions import FieldError
 from datetime import datetime
 from django.contrib.auth.models import User
 from rentdates.models import RentDate
-from rentdates.admin import RentDate_Inline
 
 
 class OwnershipAdmin(admin.ModelAdmin):
     list_display=('title', 'city', 'maximumPeopleAmount', 'dailyRate')
     list_filter=('city', 'maximumPeopleAmount')
     fieldsets = ( ('Ownership Information', {'fields': ('user', 'title', 'description', 'services', 'maximumPeopleAmount', 'dailyRate', 'city', 'rentPeriods', 'image'), 'classes': ['wide']}),)
-    inlines=[RentDate_Inline]
 
     def get_queryset(self, request):
         qs = super(OwnershipAdmin, self).get_queryset(request)
@@ -24,6 +22,15 @@ class OwnershipAdmin(admin.ModelAdmin):
             if not request.user.is_superuser:
                 kwargs["queryset"] = User.objects.filter(username=request.user)
                 kwargs["initial"] = kwargs["queryset"][0]
+
+        print("entrandoooooooooooooooooooooooooo")
+        print(db_field.name)
+        if db_field.name == "rentPeriods":
+            print("entrandoooooooooooooooooooooooooo2")
+            if not request.user.is_superuser:
+                print("entrandoooooooooooooooooooooooooo3")
+                kwargs["queryset"] = RentPeriod.objects.filter(user=request.user)
+                # kwargs["initial"] = kwargs["queryset"][0]
         return super(OwnershipAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 class RentPeriodAdmin(admin.ModelAdmin):

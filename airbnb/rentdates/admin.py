@@ -4,8 +4,6 @@ from ownerships.models import Ownership
 
 class RentDate_Inline(admin.TabularInline):
     model=RentDate
-    fk_name='ownership'
-    max_num=7
+    fk_name='reservation'
+    extra=0
 
-# Register your models here.
-admin.site.register(RentDate)
