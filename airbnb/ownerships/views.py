@@ -84,16 +84,7 @@ def reserve(request, ownership_id):
 def confirmation(request):
     #1ra Parte
     ownership = get_object_or_404(Ownership, pk=request.POST['ownership'])
-
-    r = Reservation(1, request.POST['firstname'], request.POST['lastname'], 
-    request.POST['email'], ownership)
-    # r = Reservation()
-    # r.code=1
-    # r.clientName=request.POST['firstname']
-    # r.clientLastName=request.POST['lastname']
-    # r.clientEmail=request.POST['email']
-    # r.ownership=ownership
+    r = Reservation(code=10, clientName=request.POST['firstname'],clientLastName= request.POST['lastname'], 
+    clientEmail= request.POST['email'], ownership=ownership)
     r.save()
-  
-
     return render(request, 'ownership/confirmation.html')
