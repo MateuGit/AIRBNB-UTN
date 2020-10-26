@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.landing, name='landing'),
     path('propiedades/', views.grid, name='ownerships'),
     path('propiedades/<int:ownership_id>/', views.reserve, name='reserve'),
+    path('confirmation/', views.confirmation, name='confirmation'),
 ]

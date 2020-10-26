@@ -1,5 +1,8 @@
 from django.contrib import admin
 from rentdates.models import RentDate
+from ownerships.models import Ownership
 
-# Register your models here.
-admin.site.register(RentDate)
+class RentDate_Inline(admin.TabularInline):
+    model=RentDate
+    fk_name='reservation'
+    extra=0

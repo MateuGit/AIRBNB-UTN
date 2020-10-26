@@ -167,6 +167,17 @@
   align-items: center;
 }
 
+.text-error-grid {
+  position: absolute;
+  color: red;
+  font-size: 1.5rem;
+  margin-left: 2rem;
+  margin-top: -2rem;
+  transition: all 0.1s ease;
+  top: 100%;
+  right: 59%;
+}
+
 .houses-grid {
   width: 100%;
 }
@@ -401,7 +412,7 @@
 
 #reserve-btn {
   position: absolute;
-  top: 104%;
+  top: 116%;
 }
 
 *,

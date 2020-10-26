@@ -12,3 +12,14 @@
       align-items: center;
     }
   }
+
+  .text-error-grid{
+    position: absolute;
+    color: red;
+    font-size: $font-size-micro;
+    margin-left: 2rem;
+    margin-top: -2rem;
+    transition: all .1s ease;
+    top: 100%;
+    right: 59%;
+  }

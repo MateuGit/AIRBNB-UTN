@@ -39,15 +39,16 @@
                 <p class="p-font-md">por noche</p>
             </div>
             <div class="reserve-row">
-                <form action="">
+                <form action="{% url 'confirmation' %}" method="POST">{% csrf_token %}
+                    <input type="hidden" name="ownership" id="ownership" value="{{ownership.id}}"> 
                     <div class="form-control-row">
                         <div class="form-control ">
                             <label for="from" class="text-light">Desde</label>
-                            <input value="{{dateFrom}}" class="input-sm input-reserve" type="date" required  name="from" id="from"/>
+                            <input value="{{dateFrom}}" class="input-sm input-reserve" type="date"  name="from" id="from" required/>
                         </div>
                         <div class="form-control ">
                             <label for="to" class="text-light">Hasta</label>
-                            <input value="{{dateTo}}" class="input-sm input-reserve" type="date" required name="to" id="to"/>
+                            <input value="{{dateTo}}" class="input-sm input-reserve" type="date" name="to" id="to" required/>
                         </div>
                     </div>
                     <p id="date-message"></p>
@@ -67,36 +68,41 @@
                     <div class="reserve-row">
                         <button class="btn-action" id="reserve-btn" type="submit">Reservar</button>
                     </div>
+                    <div class="form-control form-control-reserve">
+                        <label for="email" class="text-light">Email</label>
+                        <input class="input-sm input-reserve" type="email" name="email" required/>
+                    </div>
+                    <div class="summary">
+                        <div class="summary-row">
+                            <div class="summary-row-col">
+                                <p class="p-font-md" id="summary-price-night"></p>
+                                <p class="p-font-md" style="margin-left: 0.5rem;" id="summary-amount-nights"> x noche</p>
+                            </div>
+                            <div class="summary-row-col">
+                                <p class="p-font-md text-regular" id="summary-price"></p>
+                            </div>
+                        </div>
+                        <div class="summary-row">
+                            <div class="summary-row-col">
+                                <p class="p-font-md">Comisión</p>
+                            </div>
+                            <div class="summary-row-col">
+                                <p class="p-font-md text-regular" id="fee"></p>
+                            </div>
+                        </div>
+                        <div class="summary-row">
+                            <div class="summary-row-col">
+                                <p class="p-font-md-3 text-bold">Total</p>
+                            </div>
+                            <div class="summary-row-col">
+                                <p class="p-font-md-3 text-bold" id="total-price"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </form>
+
             </div>
-            <div class="summary">
-                <div class="summary-row">
-                    <div class="summary-row-col">
-                        <p class="p-font-md" id="summary-price-night">$5750</p>
-                        <p class="p-font-md" style="margin-left: 0.5rem;" id="summary-amount-nights"> por noche</p>
-                    </div>
-                    <div class="summary-row-col">
-                        <p class="p-font-md text-regular" id="summary-price">$17450</p>
-                    </div>
-                </div>
-                <div class="summary-row">
-                    <div class="summary-row-col">
-                        <p class="p-font-md">Comisión</p>
-                    </div>
-                    <div class="summary-row-col">
-                        <p class="p-font-md text-regular" id="fee">${{commission}}</p>
-                    </div>
-                </div>
-                <div class="summary-row">
-                    <div class="summary-row-col">
-                        <p class="p-font-md-3 text-bold">Total</p>
-                    </div>
-                    <div class="summary-row-col">
-                        <p class="p-font-md-3 text-bold" id="total-price">$18750</p>
-                    </div>
-                </div>
-            </div>
-            
         </div>
     </section>
     <script src="{%  static  'js/app.js'  %}"></script>
