@@ -6,4 +6,3 @@ class RentDate_Inline(admin.TabularInline):
     model=RentDate
     fk_name='reservation'
     extra=0
-

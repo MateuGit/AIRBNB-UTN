@@ -69,12 +69,10 @@ const calculate = (value) => {
     temporalPrice = Number(priceNight) * Number(value);
     summaryPrice.innerHTML ='$' + temporalPrice;
     // feeNumber = fee.innerHTML.slice(1);
-    console.log(Number(temporalPrice))
-    console.log(fee.innerHTML)
     feeTotal = Number(temporalPrice) * feeNumber;
     fee.innerHTML = '$' + feeTotal;
     finalPrice = Number(temporalPrice) + Number(feeTotal);
-    totalPrice.innerHTML = '$' + finalPrice;
+    totalPrice.innerHTML = '$' + finalPrice.toFixed(2);
 }
 
 const main = () => {
@@ -83,10 +81,16 @@ const main = () => {
     calculate(1);
     temporalPrice = Number(priceNight) * Number(nights);
     summaryPrice.innerHTML ='$'+ temporalPrice;
-    // feeNumber = fee.innerHTML.slice(1);
-    // fee.innerHTML = Number(temporalPrice) * feeNumber;
     finalPrice = Number(temporalPrice) + Number(feeTotal);
-    totalPrice.innerHTML = '$' + finalPrice;
+    console.log(finalPrice)
+    console.log(finalPrice)
+    console.log(finalPrice)
+    console.log(finalPrice)
+    console.log(finalPrice)
+    console.log(finalPrice)
+    console.log(finalPrice)
+    console.log(finalPrice)
+    totalPrice.innerHTML = '$' + finalPrice.toFixed(2);
     events();
     
 }
@@ -113,7 +117,6 @@ function setMinDateToField(){
     }
 
     let date = from.value.split('-');
-    console.log(from.value);
     
     let dd = date[2]
     let mm = date[1]; //January is 0!

@@ -25,9 +25,9 @@ class OwnershipAdmin(admin.ModelAdmin):
         return super(OwnershipAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
-        # print(db_field.name)
         if db_field.name == "rentPeriods":
-            kwargs["queryset"] = RentPeriod.objects.filter(user=request.user)
+            if not request.user.is_superuser:
+                kwargs["queryset"] = RentPeriod.objects.filter(user=request.user)
         return super(OwnershipAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
 class RentPeriodAdmin(admin.ModelAdmin):
@@ -43,7 +43,6 @@ class RentPeriodAdmin(admin.ModelAdmin):
         if db_field.name == "user":
             if not request.user.is_superuser:
                 kwargs["queryset"] = User.objects.filter(username=request.user)
-                kwargs["initial"] = kwargs["queryset"][0]
         return super(RentPeriodAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
