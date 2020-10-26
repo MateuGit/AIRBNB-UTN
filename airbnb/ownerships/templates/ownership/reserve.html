@@ -101,10 +101,19 @@
                     </div>
                     
                 </form>
-
+                
+                
             </div>
         </div>
+        <ul>
+                    
+            {% for rentDate in rentDatesTaken %}
+                <li>{{rentDate.date}}</li>
+            {% endfor %}
+                
+        </ul>
     </section>
+    
     <script src="{%  static  'js/app.js'  %}"></script>
 </body>
 </html>

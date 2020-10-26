@@ -23,6 +23,7 @@ def setIfEmpty(variable,value):
 
 def validateOwnershipsBetweenPeriods(dateFrom, dateTo,ownerships):
     ownerships = list(ownerships)
+    print(ownerships)
     for ownership in ownerships:
         ownershipRentDates = RentDate.objects.filter(ownership=ownership, 
         date__gte=dateFrom, date__lte=dateTo)

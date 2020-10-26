@@ -20,7 +20,6 @@ def grid(request):
     guests = setIfEmpty(guests,1)
     dateFromPrint = ''
     dateToPrint = ''
-
     
     if(dateFrom == ''):
         dateFrom = datetime.now()
@@ -53,8 +52,10 @@ def reserve(request, ownership_id):
     dateTo = setParameterValue(request,'to')
     guests = setParameterValue(request,'guests')
 
+    rentDatesTaken = RentDate.objects.filter(ownership=ownership)
+
     return render(request, 'ownership/reserve.html', {'ownership':ownership, "commission":commission, 'cityId':int(cityId),
-    'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests)})
+    'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests), 'rentDatesTaken':rentDatesTaken})
 
 def confirmation(request):
     daysAmount = days_between(request.POST['from'], request.POST['to'])
