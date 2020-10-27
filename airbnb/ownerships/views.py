@@ -4,7 +4,8 @@ from .models import Ownership, City
 from rentdates.models import RentDate
 from reservations.models import Reservation
 from .processes import *
-
+from daos.rentDateDao import * 
+from daos.ownershipDao import *
 
 # Create your views here.
 def landing(request):
@@ -33,8 +34,7 @@ def grid(request):
         dateTo = str(dateTo).split(' ')[0]
         dateToPrint = dateTo
 
-    ownerships = Ownership.objects.filter(city_id=cityId, rentPeriods__minimumDate__lte= dateFrom, 
-        rentPeriods__maximumDate__gte= dateTo, maximumPeopleAmount__gte=guests)
+    ownerships = getOwnershipByCityIdAndGuestsBetweenDates(cityId,guests,dateFrom,dateTo)
 
     ownerships = validateOwnershipsBetweenPeriods(dateFrom, dateTo,ownerships)
 
@@ -52,7 +52,7 @@ def reserve(request, ownership_id):
     dateTo = setParameterValue(request,'to')
     guests = setParameterValue(request,'guests')
 
-    rentDatesTaken = RentDate.objects.filter(ownership=ownership)
+    rentDatesTaken = getRentDateByOwnership(ownership)
 
     return render(request, 'ownership/reserve.html', {'ownership':ownership, "commission":commission, 'cityId':int(cityId),
     'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests), 'rentDatesTaken':rentDatesTaken})
@@ -63,12 +63,11 @@ def confirmation(request):
     ownership = get_object_or_404(Ownership, pk=request.POST['ownership'])
     errorMsg = ''
     reservationCode=''
-    periodExists = Ownership.objects.filter(pk=request.POST['ownership'], rentPeriods__minimumDate__lte= request.POST['from'], 
-    rentPeriods__maximumDate__gte= request.POST['to']).exists()
+    periodExists = existsOwnershipByIdBetweenDates(request.POST['ownership'],request.POST['from'],request.POST['to'])
 
     if periodExists:
 
-        dateExistsBetweenDates = RentDate.objects.filter(ownership=ownership, date__in=dateList).exists()
+        dateExistsBetweenDates = existsRentDateByOwnershipIn(ownership,dateList)
 
         if not dateExistsBetweenDates:
             

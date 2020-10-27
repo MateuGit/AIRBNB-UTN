@@ -44,7 +44,7 @@ class RentPeriod(models.Model):
     )
     minimumDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now, validators=[todayDateValidation])
     maximumDate = models.DateField(auto_now=False, auto_now_add=False, default=datetime.now)
-
+    
     def save(self, force_insert=False, force_update=False):
         if self.maximumDate < self.minimumDate:
             raise ValidationError('La fecha maxima tiene que ser mayor que la fecha minima.')
