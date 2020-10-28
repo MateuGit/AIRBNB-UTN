@@ -7,3 +7,6 @@ def getOwnershipByCityIdAndGuestsBetweenDates(cityId,guests,dateFrom,dateTo):
 def existsOwnershipByIdBetweenDates(id,dateFrom,dateTo):
     return Ownership.objects.filter(pk=id, rentPeriods__minimumDate__lte= dateFrom, 
     rentPeriods__maximumDate__gte= dateTo).exists()
+
+def getAllOwnerships():
+    return Ownership.objects.all()

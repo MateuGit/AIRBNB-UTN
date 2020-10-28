@@ -7,11 +7,12 @@ from .processes import *
 from daos.rentDateDao import * 
 from daos.ownershipDao import *
 from daos.reservationDao import *
+from daos.cityDao import *
 
 # Create your views here.
 def landing(request):
-    cities = City.objects.all()
-    ownerships = Ownership.objects.all()
+    cities = getAllCities()
+    ownerships = getAllOwnerships()
     return render(request, 'ownership/landing.html', {'ownerships':ownerships, 'cities':cities})
 
 def grid(request):
@@ -39,7 +40,7 @@ def grid(request):
 
     ownerships = validateOwnershipsBetweenPeriods(dateFrom, dateTo,ownerships)
 
-    cities = City.objects.all()
+    cities = getAllCities()
 
     return render(request, 'ownership/grid.html', {'ownerships':ownerships, 'cities':cities, 
     'cityId':int(cityId),'dateFrom':dateFrom, 'dateTo':dateTo, 'guests':int(guests), 
