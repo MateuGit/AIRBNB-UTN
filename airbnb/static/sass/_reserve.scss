@@ -118,5 +118,10 @@
 
   #reserve-btn{
     position: absolute;
-    top:116%;
+    top:95%;
+  }
+
+  #reserve-btn:disabled{
+    background-color: #e7646d;
+    cursor: not-allowed;
   }

@@ -1,12 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>{{reservationCode}}</p>
-    <p>{{errorMsg}}</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{%  static  'css/styles.css'  %}" />
+    <title>UTN</title>
+  </head>
+  <body>
+    <div class="confirm-container">
+      <div class="confirm-box">
+        <div class="confirm-box-message">
+          {% if errorMsg %}
+          <p class="confirm-p error">¡Ha ocurrido un error!</p>
+          <p class="confirm-p confirm-bold">{{errorMsg}}</p>
+          {% else %}
+          <p class="confirm-p success">¡Su reserva se ha realizado con éxito!</p>
+          <p class="confirm-p">Su código es: <span class="confirm-bold">{{reservationCode}}</span></p>
+          {% endif %}
+          <a class="btn-action-item">Atrás</a>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

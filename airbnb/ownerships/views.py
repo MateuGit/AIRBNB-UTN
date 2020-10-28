@@ -6,6 +6,7 @@ from reservations.models import Reservation
 from .processes import *
 from daos.rentDateDao import * 
 from daos.ownershipDao import *
+from daos.reservationDao import *
 
 # Create your views here.
 def landing(request):

@@ -5,7 +5,9 @@ def setReservationTotalPrice(reservation,daysAmount):
     reservation.save()
 
 def saveReservation(request,ownership):
+    print('test')
     reservation = Reservation(clientName=request.POST['firstname'],clientLastName= request.POST['lastname'], 
     clientEmail= request.POST['email'], ownership=ownership)
     reservation.save()
+    print('test paso')
     return reservation
