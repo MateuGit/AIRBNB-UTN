@@ -37,6 +37,9 @@
     & .error {
       color: $color-red;
     }
+    & .success{
+        color: rgb(33, 148, 33);
+    }
     & .confirm-bold {
       font-weight: bolder;
     }

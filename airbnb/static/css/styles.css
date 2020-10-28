@@ -459,6 +459,9 @@
 .confirm-box-message .error {
   color: #e2212d;
 }
+.confirm-box-message .success {
+  color: #219421;
+}
 .confirm-box-message .confirm-bold {
   font-weight: bolder;
 }
