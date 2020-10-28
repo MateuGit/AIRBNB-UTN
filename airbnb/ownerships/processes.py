@@ -41,3 +41,14 @@ def validateOwnershipsBetweenPeriods(dateFrom, dateTo,ownerships):
         if ownershipRentDates.exists():
            ownerships.remove(ownership)
     return ownerships
+
+def setSessionVariables(request, ownershipId, city, dateFrom, dateTo, guests):
+    request.session['ownershipId'] = ownershipId
+    request.session['city'] = city
+    request.session['dateFrom'] = dateFrom
+    request.session['dateTo'] = dateTo
+    request.session['guests'] = guests
+
+
+def getSessionVariable(request, parameterName):
+    return request.session.get(parameterName)

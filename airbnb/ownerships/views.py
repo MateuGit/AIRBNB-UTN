@@ -36,6 +36,9 @@ def grid(request):
         dateTo = str(dateTo).split(' ')[0]
         dateToPrint = dateTo
 
+    if cityId == '':
+        cityId = 1
+
     ownerships = getOwnershipByCityIdAndGuestsBetweenDates(cityId,guests,dateFrom,dateTo)
 
     ownerships = validateOwnershipsBetweenPeriods(dateFrom, dateTo,ownerships)
@@ -53,6 +56,7 @@ def reserve(request, ownership_id):
     dateFrom = setParameterValue(request,'from')
     dateTo = setParameterValue(request,'to')
     guests = setParameterValue(request,'guests')
+    setSessionVariables(request, ownership_id, cityId, dateFrom, dateTo, guests)
 
     rentDatesTaken = getRentDateByOwnership(ownership)
 
@@ -66,6 +70,13 @@ def confirmation(request):
     errorMsg = ''
     reservationCode=''
     periodExists = existsOwnershipByIdBetweenDates(request.POST['ownership'],request.POST['from'],request.POST['to'])
+    cityId = getSessionVariable(request, 'city')
+    ownershipId = getSessionVariable(request, 'ownershipId')
+    ownership = get_object_or_404(Ownership, pk=ownershipId)
+    dateFrom = getSessionVariable(request, 'dateFrom')
+    dateTo = getSessionVariable(request, 'dateTo')
+    guests = getSessionVariable(request, 'guests')
+
 
     if periodExists:
 
@@ -87,5 +98,7 @@ def confirmation(request):
     else:
         errorMsg = "No existe el periodo ingresado para la propiedad."
 
-    return render(request, 'ownership/confirmation.html', {'errorMsg': errorMsg,'reservationCode':reservationCode})
+    return render(request, 'ownership/confirmation.html', {'errorMsg': errorMsg, 'ownership':ownership,
+    'reservationCode':reservationCode, 'cityId':cityId,'dateFrom':dateFrom, 'dateTo':dateTo, 
+    'guests':guests})
 
