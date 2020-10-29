@@ -21,9 +21,7 @@ def setIfEmpty(variable,value):
 def days_between(d1, d2):
     d1 = datetime.strptime(d1, "%Y-%m-%d")
     d2 = datetime.strptime(d2, "%Y-%m-%d")
-    days = timedelta(1)
-    new_date = d1 - days
-    return abs((d2 - new_date).days)
+    return abs((d2 - d1).days)
 
 def getDayList(dateFrom, daysAmount):
     dayList = []

@@ -70,13 +70,13 @@ def confirmation(request):
     errorMsg = ''
     reservationCode=''
     periodExists = existsOwnershipByIdBetweenDates(request.POST['ownership'],request.POST['from'],request.POST['to'])
+    
     cityId = getSessionVariable(request, 'city')
     ownershipId = getSessionVariable(request, 'ownershipId')
     ownership = get_object_or_404(Ownership, pk=ownershipId)
     dateFrom = getSessionVariable(request, 'dateFrom')
     dateTo = getSessionVariable(request, 'dateTo')
     guests = getSessionVariable(request, 'guests')
-
 
     if periodExists:
 
@@ -85,6 +85,7 @@ def confirmation(request):
         if not dateExistsBetweenDates:
             
             try:
+                #1ra Parte
                 reservation = saveReservation(request,ownership)   
                 reservationCode = reservation.code  
                 #2da Parte 

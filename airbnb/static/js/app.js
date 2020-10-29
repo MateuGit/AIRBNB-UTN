@@ -77,9 +77,8 @@ const calculate = (value) => {
     summaryAmountNights.innerHTML = value == 1 ? `x 1 noche` : `x ${value} noches`;
     temporalPrice = Number(priceNight) * Number(value);
     summaryPrice.innerHTML = '$' + temporalPrice;
-    // feeNumber = fee.innerHTML.slice(1);
     feeTotal = Number(temporalPrice) * feeNumber;
-    fee.innerHTML = '$' + feeTotal;
+    fee.innerHTML = '$' + feeTotal.toFixed(2);
     finalPrice = Number(temporalPrice) + Number(feeTotal);
     totalPrice.innerHTML = '$' + finalPrice.toFixed(2);
 }
@@ -156,4 +155,3 @@ main();
 setMinDateFromField();
 setMinDateToField();
 getDisabledDates();
-console.log(disabledDate);
