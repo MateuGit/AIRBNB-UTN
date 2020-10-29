@@ -72,9 +72,11 @@
                     </div>
                     
                     <div class="grid-item-info-services">
+                        <ul class="grid-item-list-services"> 
                     {% for service in ownership.services.all %}
-                        <p>{{ service }} <pre> </pre></p>
+                       <li>{{ service }} </li>
                     {% endfor %}
+                </ul>
                 </div>
                     <div class="grid-item-info-action">
                         <div class="grid-item-info-action-price">

@@ -82,3 +82,7 @@
 .grid-item:hover {
   @include box-shadow-2();
 }
+.grid-item-list-services{
+  columns: 2;
+  list-style: none;
+}
