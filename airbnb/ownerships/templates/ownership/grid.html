@@ -13,7 +13,7 @@
             <form action="" class="form-nav">
                 <div class="form-control">
                     <label for="city">Ciudad</label>
-                    <select name="city" id="" class="input-md" required>
+                    <select name="city" id="nav-city" class="input-md" required>
                         {% for city in cities %}
                             
                             {% if city.id == cityId %}
@@ -63,10 +63,10 @@
                 <img src="{{ownership.image.url}}" alt="house" />
                 <div class="grid-item-info">
                     <div class="grid-item-info-header">
-                        <h3 class="grid-item-info-title">{{ ownership.title }}</h3>
-                        <div class="grid-item-info-header-city">
+                        <h3 class="grid-item-info-title" style="margin-bottom: 2rem;">{{ ownership.title }}</h3>
+                        <div class="grid-item-info-header-city" >
                             <img src="../../../static/media/icons/location-icon.png" alt="location"/>
-                            <h4 class="grid-item-info-city">{{ownership.city}}</h4>
+                            <h4 class="grid-item-info-city" style="margin-left: 2rem;">{{ownership.city}}</h4>
                         </div>
                         
                     </div>

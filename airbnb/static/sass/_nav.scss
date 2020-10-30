@@ -23,3 +23,12 @@
     top: 100%;
     right: 59%;
   }
+
+  #nav-city{
+    width: 35rem;
+    margin-right: -10rem;
+    @media only screen and (max-width: 1400px) {
+      margin-right: 0rem;
+      width: 30rem;
+    }
+  }
